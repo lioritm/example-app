@@ -1,0 +1,20 @@
+.search-bar {
+  border: 1px solid #999999;
+  border-radius: 0.5rem;
+  overflow: hidden;
+  width: 40rem;
+  display: flex;
+  align-items: center;
+  height: 3rem;
+  margin: 0 auto 2rem;
+  padding: 0 0.5rem;
+}
+
+.search-bar input {
+  width: 100%;
+  outline: none;
+  height: 100%;
+  font-size: 1rem;
+  border: none;
+  margin-left: 0.5rem;
+}

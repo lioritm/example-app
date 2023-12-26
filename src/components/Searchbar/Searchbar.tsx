@@ -1,5 +1,7 @@
 import React from "react";
-import { CatContext } from "../context/CatContext";
+import { FaSearch } from "react-icons/fa";
+import { CatContext } from "../../context/CatContext";
+import "./Searchbar.css";
 const Searchbar = () => {
   const { setSearch } = React.useContext(CatContext);
 
@@ -11,7 +13,8 @@ const Searchbar = () => {
     }
   };
   return (
-    <div className="search-bar box-design">
+    <div className="search-bar">
+      <FaSearch size={20} />
       <input
         type="text"
         placeholder="Search by cat name or owner name"

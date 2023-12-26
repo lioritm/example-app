@@ -6,11 +6,13 @@ import {
   doc,
   getDocs,
   updateDoc,
+  deleteDoc,
   addDoc,
-  // FieldValue,
 } from "firebase/firestore";
 import { db, catsDB } from "../config/firebase";
 import { UserAuth } from "./AuthContext";
+import { CreateCatObj } from "../utils/createData";
+
 //import { sortByParam } from "../utils/utils";
 export const CatContext = createContext<CatsContextInterface>(
   {} as CatsContextInterface
@@ -53,22 +55,54 @@ const CatProvider = ({ children }: ContextProps) => {
   };
 
   const returnCat = (id: string) => {
-    const selectedCat = cats.find((cat) => cat.id === id);
-    return selectedCat;
+    const isCat = (cat: ICat) => cat.id === id;
+    const selectedCatIndex = cats.findIndex(isCat);
+    return {
+      selectedCatIndex,
+      selectedCat: cats[selectedCatIndex],
+    };
   };
 
   const updateCat = async (cat: ICat, changes: {}) => {
     const catDoc = doc(db, catsDB, cat.id!);
+    const tempCatIndex = returnCat(cat.id!).selectedCatIndex;
+    const tempCats = [...cats];
+    tempCats[tempCatIndex] = changes as ICat;
+    setCats(tempCats);
     await updateDoc(catDoc, changes);
   };
 
   const addNewCat = async (newCat: ICat) => {
+    const tempCats = [...cats];
+    tempCats.push(newCat);
+    setCats(tempCats);
     await addDoc(catsCollectionRef, newCat);
   };
+
+  const deleteCat = async (id: string) => {
+    const catDoc = doc(db, catsDB, id);
+    const tempCats = cats.filter((cat) => cat.id !== id);
+    try {
+      await deleteDoc(catDoc);
+      setCats(tempCats);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+  // const deleteAll = (cats: ICat[]) => {
+  //   cats.forEach((cat) => {
+  //     if (cat.ownerName !== "Liorit" && cat.ownerName !== "Liat") {
+  //       deleteCat(cat.id!);
+  //     }
+  //   });
+  // };
   useEffect(() => {
     if (user) {
       getCats();
+
+      // addNewCat(CreateCatObj());
     }
+
     // eslint-disable-next-line
   }, [user]);
 
@@ -80,7 +114,9 @@ const CatProvider = ({ children }: ContextProps) => {
     if (search.length > 0) {
       const filteredResults = cats.filter(
         (cat) =>
-          cat.name && cat.name.toLowerCase().includes(search.toLowerCase())
+          (cat.name && cat.name.toLowerCase().includes(search.toLowerCase())) ||
+          (cat.ownerName &&
+            cat.ownerName.toLowerCase().includes(search.toLowerCase()))
       );
       setSearchResults(filteredResults);
     } else {
@@ -96,8 +132,8 @@ const CatProvider = ({ children }: ContextProps) => {
         search,
         returnCat,
         updateCat,
-        getCats,
         addNewCat,
+        deleteCat,
       }}
     >
       {children}

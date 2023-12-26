@@ -1,6 +1,6 @@
 import React from "react";
 import { CatContext } from "../../context/CatContext";
-import { useParams, useLocation } from "react-router-dom";
+import { useParams, useLocation, Link } from "react-router-dom";
 import { ICat } from "../../interfaces/cat";
 import Loader from "../../shared/components/Loader/Loader";
 import CatComp from "../../pagesComponents/Cat/CatComp";
@@ -12,22 +12,20 @@ const Cat = () => {
 
   const { returnCat } = React.useContext(CatContext);
   const [selectedCat, setSelectedCat] = React.useState<ICat>(
-    returnCat(catId!)!
+    returnCat(catId!)!.selectedCat
   );
   const [editMode, setEditMode] = React.useState<boolean>(!!location.search);
 
   React.useEffect(() => {
     if (catId) {
-      const cat = returnCat(catId);
+      const cat = returnCat(catId).selectedCat;
       setSelectedCat(cat!);
     }
   }, [catId, returnCat]);
 
-  React.useEffect(() => {
-    console.log(editMode);
-  }, [editMode]);
   return (
-    <section>
+    <section className="container page">
+      <Link to="/">Back</Link>
       <h1>Cat Management Board</h1>
       {!selectedCat ? (
         <div className="spinner-container">

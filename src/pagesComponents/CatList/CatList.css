@@ -1,0 +1,52 @@
+.table {
+  display: flex;
+  flex-flow: column nowrap;
+  background-color: white;
+  width: 80%;
+  margin: 0 auto;
+  border-radius: 4px;
+  border: 1px solid #dadada;
+  box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.08);
+}
+.table-head .table-row {
+  background-color: #ececec;
+  color: #3e3e3e;
+  font-weight: bold;
+}
+.table-head .table-row .table-cell {
+  font-size: 16px;
+}
+.table-row {
+  display: flex;
+  flex-flow: row nowrap;
+  width: 100%;
+  border-bottom: 1px solid #dadada;
+}
+.table-row:hover {
+  background-color: #ddd;
+}
+.table-row-devided {
+  display: flex;
+  width: 80%;
+  text-decoration: none;
+  color: #000;
+}
+
+.actions {
+  display: flex;
+  width: 20%;
+}
+.table-cell {
+  display: flex;
+  flex: 1;
+  font-size: 14px;
+  padding: 15px 10px;
+  text-decoration: none;
+  color: #000;
+  align-items: center;
+  transition: all 0.15s ease-in-out;
+}
+.actions button {
+  background: transparent;
+  border: none;
+}

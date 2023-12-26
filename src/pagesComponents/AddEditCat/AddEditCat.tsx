@@ -4,6 +4,7 @@ import { Timestamp } from "firebase/firestore";
 import { useForm } from "react-hook-form";
 import { ICat, IAddEditCat } from "../../interfaces/cat";
 import { useNavigate } from "react-router-dom";
+import { v4 as uuidv4 } from "uuid";
 const AddEditCat = ({
   editMode,
   cat,
@@ -37,12 +38,15 @@ const AddEditCat = ({
       }
     });
     if (editMode) {
-      updateCat(cat!, data as ICat);
-      if (setEditMode) setEditMode(false);
-      if (setSelectedCat) setSelectedCat(data as ICat);
+      updateCat(cat!, data as ICat).then(() => {
+        if (setEditMode) setEditMode(false);
+        if (setSelectedCat) setSelectedCat(data as ICat);
+      });
     } else {
-      addNewCat(data as ICat);
-      navigate("/");
+      data.id = uuidv4();
+      addNewCat(data as ICat).then(() => {
+        navigate("/");
+      });
     }
   });
 

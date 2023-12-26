@@ -1,0 +1,36 @@
+nav {
+  width: 100%;
+  background: #ddd;
+}
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  height: 3rem;
+  align-items: center;
+}
+.left-nav {
+  display: flex;
+}
+.left-nav > a {
+  margin-right: 1rem;
+  text-decoration: none;
+  color: #000;
+  padding: 0.5rem;
+}
+.left-nav > a:hover {
+  text-decoration: underline;
+}
+.left-nav > a.selected {
+  background: #eee;
+  border-radius: 5rem;
+}
+.right-nav button {
+  background: none;
+  border: none;
+  font-size: 1rem;
+  color: #000;
+  cursor: pointer;
+}
+.right-nav button:hover {
+  text-decoration: underline;
+}

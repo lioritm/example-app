@@ -1,5 +1,5 @@
 export interface ICat {
-  id?: string;
+  id: string;
   ownerName: string;
   name: string;
   dewormed: boolean;
@@ -34,6 +34,7 @@ export interface CatReportData {
 
 interface catList {
   cats: ICat[];
+  setCats: React.Dispatch<React.SetStateAction>;
 }
 interface ICatComp {
   selectedCat: ICat;

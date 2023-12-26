@@ -4,15 +4,13 @@ import { CatContext } from "../../context/CatContext";
 import { UserAuth } from "../../context/AuthContext";
 import Loader from "../../shared/components/Loader/Loader";
 import CatList from "../../pagesComponents/CatList/CatList";
-import Searchbar from "../../components/Searchbar";
-
+import Searchbar from "../../components/Searchbar/Searchbar";
+import "./Cats.css";
 const Cats = () => {
-  const { searchResults, search, getCats, setSearch } =
-    React.useContext(CatContext);
+  const { searchResults, search, setSearch } = React.useContext(CatContext);
   const { user } = UserAuth();
   const [cats, setCats] = React.useState<ICat[]>([]);
   React.useEffect(() => {
-    getCats();
     setSearch("");
     // eslint-disable-next-line
   }, []);
@@ -22,7 +20,7 @@ const Cats = () => {
   }, [searchResults]);
 
   return (
-    <section>
+    <section className="container page">
       <Searchbar />
       {!user ? (
         <div></div>
@@ -30,8 +28,10 @@ const Cats = () => {
         <>
           <h1>Cat List {cats.length > 0 ? `(${cats.length})` : ""}</h1>
           {cats.length === 0 && !search && <Loader />}
-          {cats.length === 0 && search && <div>No cats found</div>}
-          {cats.length > 0 && <CatList cats={cats} />}
+          {cats.length === 0 && search && (
+            <h6 className="text-center">No cats found</h6>
+          )}
+          {cats.length > 0 && <CatList cats={cats} setCats={setCats} />}
         </>
       )}
     </section>

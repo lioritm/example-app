@@ -1,12 +1,11 @@
-import { Navbar } from "./components/Navbar";
+import { Navbar } from "./components/Navbar/Navbar";
 import { AuthContextProvider } from "./context/AuthContext";
 import CatProvider from "./context/CatContext";
-import AddCatPage from "./pages/AddEditCat/AddEditCatPage";
+import AddCatPage from "./pages/AddCat/AddCatPage";
 import Forgot from "./pages/Auth/Forgot";
 import Login from "./pages/Auth/Login";
 import Cat from "./pages/Cat/Cat";
 import Cats from "./pages/Cats/Cats";
-import "./style.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 function App() {
   return (
@@ -19,7 +18,7 @@ function App() {
             <Route path="/reset-password" element={<Forgot />} />
             <Route path="cats" element={<Cats />}></Route>
             <Route path="cats/:catId" element={<Cat />} />
-            <Route path="addeditcat" element={<AddCatPage />} />
+            <Route path="addcat" element={<AddCatPage />} />
           </Routes>
         </BrowserRouter>
       </CatProvider>

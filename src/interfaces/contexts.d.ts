@@ -15,8 +15,11 @@ export interface CatsContextInterface {
   setSearch: (search: string) => void;
   searchResults: ICat[];
   search: string;
-  returnCat: (id: string) => ICat | undefined;
+  returnCat: (id: string) => {
+    selectedCatIndex: number;
+    selectedCat: ICat;
+  };
   addNewCat: (newCat: ICat) => Promise<void>;
   updateCat: (cat: ICat, changes: object) => Promise<void>;
-  getCats: () => Promise<void>;
+  deleteCat: (id: string) => Promise<void>;
 }
