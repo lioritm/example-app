@@ -64,3 +64,6 @@ code {
 .form-error {
   border-color: red !important;
 }
+input {
+  outline: none;
+}
