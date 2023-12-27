@@ -29,7 +29,7 @@ const Cats = () => {
           <h1>Cat List {cats.length > 0 ? `(${cats.length})` : ""}</h1>
           {cats.length === 0 && !search && <Loader />}
           {cats.length === 0 && search && (
-            <h6 className="text-center">No cats found</h6>
+            <h3 className="text-center">No cats found</h3>
           )}
           {cats.length > 0 && <CatList cats={cats} setCats={setCats} />}
         </>

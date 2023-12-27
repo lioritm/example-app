@@ -55,6 +55,7 @@ const AddEditCat = ({
     if (editMode) {
       const fields = [
         "ownerName",
+        "id",
         "name",
         "gender",
         "birthdate",
@@ -103,15 +104,20 @@ const AddEditCat = ({
         <div className="flex cat-info-box">
           <div className="box-item box-key">Cat name:</div>
           <div className="box-item box-value">
-            <input type="text" placeholder="Cat name" {...register("name")} />
+            <input
+              type="text"
+              required
+              placeholder="Cat name"
+              {...register("name")}
+            />
           </div>
         </div>
         <div className="flex cat-info-box">
           <div className="box-item box-key">Owner name:</div>
           <div className="box-item box-value">
-            {" "}
             <input
               type="text"
+              required
               placeholder="Owner name"
               {...register("ownerName")}
             />
@@ -120,7 +126,6 @@ const AddEditCat = ({
         <div className="flex cat-info-box">
           <div className="box-item box-key">Gender:</div>
           <div className="box-item box-value">
-            {" "}
             <select {...register("gender")} required defaultValue={""}>
               <option className="disabled" value="" disabled>
                 Select gender
@@ -135,6 +140,7 @@ const AddEditCat = ({
           <div className="box-item box-value">
             <input
               type="date"
+              required
               placeholder="date of birth"
               {...register("birthdate")}
             />
@@ -143,7 +149,7 @@ const AddEditCat = ({
         <div className="flex cat-info-box">
           <div className="box-item box-key">Sterilized:</div>
           <div className="box-item box-value">
-            <select {...register("sterilized")} defaultValue={""}>
+            <select {...register("sterilized")} required defaultValue={""}>
               <option className="disabled" value="" disabled>
                 Select sterilization status
               </option>
@@ -160,6 +166,7 @@ const AddEditCat = ({
             <div className="box-item box-value">
               <input
                 type="date"
+                required={watchedValue.sterilized === "true"}
                 placeholder="date of sterilization"
                 {...register("dateOfsterilization")}
               />
@@ -169,8 +176,8 @@ const AddEditCat = ({
         <div className="flex cat-info-box">
           <div className="box-item box-key">Vaccinated:</div>
           <div className="box-item box-value">
-            <select {...register("vaccinated")} defaultValue={"DEFAULT"}>
-              <option className="disabled" value="DEFAULT" disabled>
+            <select {...register("vaccinated")} required defaultValue={""}>
+              <option className="disabled" value="" disabled>
                 Select vaccination status
               </option>
               <option value="true">Yes</option>
@@ -185,6 +192,7 @@ const AddEditCat = ({
             <div className="box-item box-value">
               <input
                 type="date"
+                required={watchedValue.vaccinated === "true"}
                 placeholder="date of vaccination"
                 {...register("dateOfVaccine")}
               />
@@ -194,8 +202,8 @@ const AddEditCat = ({
         <div className="flex cat-info-box">
           <div className="box-item box-key">Dewormed:</div>
           <div className="box-item box-value">
-            <select {...register("dewormed")} defaultValue={"DEFAULT"}>
-              <option className="disabled" value="DEFAULT" disabled>
+            <select {...register("dewormed")} required defaultValue={""}>
+              <option className="disabled" value="" disabled>
                 Select deworming status
               </option>
               <option value="true">Yes</option>
@@ -210,6 +218,7 @@ const AddEditCat = ({
             <div className="box-item box-value">
               <input
                 type="date"
+                required={watchedValue.dewormed === "true"}
                 placeholder="date of deworming"
                 {...register("dateOfDeworm")}
               />
