@@ -10,7 +10,7 @@ import {
   addDoc,
   query,
   orderBy,
-  startAfter,
+  //startAfter,
   limit,
 } from "firebase/firestore";
 import { db, catsDB } from "../config/firebase";
