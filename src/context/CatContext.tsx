@@ -8,10 +8,10 @@ import {
   updateDoc,
   deleteDoc,
   addDoc,
-  query,
-  orderBy,
+  // query,
+  // orderBy,
   //startAfter,
-  limit,
+  // limit,
 } from "firebase/firestore";
 import { db, catsDB } from "../config/firebase";
 import { UserAuth } from "./AuthContext";
@@ -29,7 +29,7 @@ const CatProvider = ({ children }: ContextProps) => {
   const [searchResults, setSearchResults] = useState<ICat[]>([]);
 
   const catsCollectionRef = collection(db, catsDB);
-  const first = query(catsCollectionRef, orderBy("name"), limit(5));
+  // const first = query(catsCollectionRef, orderBy("name"), limit(5));
 
   const getCats = async () => {
     // const data = await getDocs(first);
