@@ -175,7 +175,7 @@ const AddEditCat = ({
                 required: true,
               })}
             />
-            {errors.birthdate && (
+            {errors.gender && (
               <span className="error">Please enter birthdate</span>
             )}
           </div>
@@ -183,22 +183,13 @@ const AddEditCat = ({
         <div className="flex cat-info-box">
           <div className="box-item box-key">Sterilized:</div>
           <div className="box-item box-value">
-            <select
-              className={errors.sterilized ? "form-error" : ""}
-              {...register("sterilized", {
-                required: true,
-              })}
-              defaultValue={""}
-            >
+            <select {...register("sterilized")} defaultValue={""}>
               <option className="disabled" value="" disabled>
                 Select sterilization status
               </option>
               <option value="true">Yes</option>
               <option value="false">No</option>
             </select>
-            {errors.sterilized && (
-              <span className="error">Please select sterilization status</span>
-            )}
           </div>
         </div>
 
@@ -209,37 +200,23 @@ const AddEditCat = ({
             <div className="box-item box-value">
               <input
                 type="date"
-                className={errors.dateOfsterilization ? "form-error" : ""}
+                required={watchedValue.sterilized === "true"}
                 placeholder="date of sterilization"
-                {...register("dateOfsterilization", {
-                  required: watchedValue.sterilized === "true",
-                })}
+                {...register("dateOfsterilization")}
               />
-              {errors.dateOfsterilization && (
-                <span className="error">Please add sterilization date</span>
-              )}
             </div>
           </div>
         )}
         <div className="flex cat-info-box">
           <div className="box-item box-key">Vaccinated:</div>
           <div className="box-item box-value">
-            <select
-              {...register("vaccinated", {
-                required: true,
-              })}
-              className={errors.vaccinated ? "form-error" : ""}
-              defaultValue={""}
-            >
+            <select {...register("vaccinated")} required defaultValue={""}>
               <option className="disabled" value="" disabled>
                 Select vaccination status
               </option>
               <option value="true">Yes</option>
               <option value="false">No</option>
             </select>
-            {errors.vaccinated && (
-              <span className="error">Please select vaccination status</span>
-            )}
           </div>
         </div>
 
@@ -249,37 +226,23 @@ const AddEditCat = ({
             <div className="box-item box-value">
               <input
                 type="date"
-                className={errors.dateOfVaccine ? "form-error" : ""}
+                required={watchedValue.vaccinated === "true"}
                 placeholder="date of vaccination"
-                {...register("dateOfVaccine", {
-                  required: watchedValue.vaccinated === "true",
-                })}
+                {...register("dateOfVaccine")}
               />
-              {errors.dateOfVaccine && (
-                <span className="error">Please add vaccination date</span>
-              )}
             </div>
           </div>
         )}
         <div className="flex cat-info-box">
           <div className="box-item box-key">Dewormed:</div>
           <div className="box-item box-value">
-            <select
-              {...register("dewormed", {
-                required: true,
-              })}
-              className={errors.dewormed ? "form-error" : ""}
-              defaultValue={""}
-            >
+            <select {...register("dewormed")} defaultValue={""}>
               <option className="disabled" value="" disabled>
                 Select deworming status
               </option>
               <option value="true">Yes</option>
               <option value="false">No</option>
             </select>
-            {errors.dewormed && (
-              <span className="error">Please select deworming status</span>
-            )}
           </div>
         </div>
 
@@ -289,15 +252,10 @@ const AddEditCat = ({
             <div className="box-item box-value">
               <input
                 type="date"
-                className={errors.dateOfDeworm ? "form-error" : ""}
+                required={watchedValue.dewormed === "true"}
                 placeholder="date of deworming"
-                {...register("dateOfDeworm", {
-                  required: watchedValue.dewormed === "true",
-                })}
+                {...register("dateOfDeworm")}
               />
-              {errors.dateOfDeworm && (
-                <span className="error">Please add deworming date</span>
-              )}
             </div>
           </div>
         )}
