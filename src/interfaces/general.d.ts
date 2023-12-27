@@ -8,3 +8,11 @@ export interface LooseObject {
 export interface IProtectedRoutes {
   children: ReactNode;
 }
+export interface IModal {
+  cancelModal: function;
+  okModal?: function;
+  title?: string;
+  content?: string;
+  okText?: string;
+  cancelText?: string;
+}

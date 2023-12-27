@@ -19,6 +19,7 @@ code {
 }
 .page {
   padding-top: 3rem;
+  padding-bottom: 2rem;
 }
 .text-center {
   text-align: center;
@@ -31,4 +32,26 @@ code {
 }
 .flex {
   display: flex;
+}
+.back {
+  display: inline-flex;
+  align-items: center;
+}
+.back > span {
+  margin-left: 0.3rem;
+}
+.general-button {
+  background: #ddd;
+  outline: none;
+  padding: 0.5rem 1rem;
+  border-radius: 0.3rem;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  cursor: pointer;
+}
+.general-button:hover {
+  background: #eee;
+}
+.relative {
+  position: relative;
 }

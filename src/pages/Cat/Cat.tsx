@@ -5,6 +5,7 @@ import { ICat } from "../../interfaces/cat";
 import Loader from "../../shared/components/Loader/Loader";
 import CatComp from "../../pagesComponents/Cat/CatComp";
 import AddEditCat from "../../pagesComponents/AddEditCat/AddEditCat";
+import { FaArrowLeft } from "react-icons/fa";
 
 const Cat = () => {
   const { catId } = useParams();
@@ -25,7 +26,10 @@ const Cat = () => {
 
   return (
     <section className="container page">
-      <Link to="/">Back</Link>
+      <Link to="/" className="back">
+        <FaArrowLeft />
+        <span>Back</span>
+      </Link>
       <h1>Cat Management Board</h1>
       {!selectedCat ? (
         <div className="spinner-container">
@@ -33,12 +37,17 @@ const Cat = () => {
         </div>
       ) : (
         <>
-          <CatComp selectedCat={selectedCat} setSelectedCat={setSelectedCat} />
-          {editMode && (
+          {editMode ? (
             <AddEditCat
               editMode={editMode}
               cat={selectedCat}
               setEditMode={setEditMode}
+              setSelectedCat={setSelectedCat}
+            />
+          ) : (
+            <CatComp
+              setEditMode={setEditMode}
+              selectedCat={selectedCat}
               setSelectedCat={setSelectedCat}
             />
           )}

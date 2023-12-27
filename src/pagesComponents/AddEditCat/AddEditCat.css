@@ -1,3 +1,11 @@
-select:invalid {
-  color: red;
+.cat-info-container .general-button {
+  margin: 2rem auto 0;
+  display: block;
+  min-width: auto;
+}
+.cat-info-container form select,
+.cat-info-container form input {
+  border: 1px solid #ddd;
+  min-width: 100%;
+  font-size: 16px;
 }

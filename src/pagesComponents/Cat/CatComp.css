@@ -1,0 +1,37 @@
+.cat-info-container {
+  width: 50%;
+  margin: auto;
+  padding: 1rem;
+}
+.cat-info-box {
+  width: 70%;
+  margin: 0 auto 0.5rem;
+}
+.box-item {
+  padding: 1rem 2rem;
+  width: 50%;
+  border: 1px solid #ddd;
+}
+.box-item.box-key {
+  background-color: #eee;
+  border-radius: 0.3rem 0 0 0.3rem;
+}
+.box-item.box-value {
+  border-radius: 0 0.3rem 0.3rem 0;
+  border-left: none;
+}
+.action-buttons {
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+.action-button {
+  display: flex;
+  cursor: pointer;
+}
+.action-button.delete {
+  margin-left: 1.5rem;
+}
+.action {
+  margin-left: 0.2rem;
+}

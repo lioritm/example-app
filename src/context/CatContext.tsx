@@ -8,10 +8,14 @@ import {
   updateDoc,
   deleteDoc,
   addDoc,
+  query,
+  orderBy,
+  startAfter,
+  limit,
 } from "firebase/firestore";
 import { db, catsDB } from "../config/firebase";
 import { UserAuth } from "./AuthContext";
-import { CreateCatObj } from "../utils/createData";
+//import { CreateCatObj } from "../utils/createData";
 
 //import { sortByParam } from "../utils/utils";
 export const CatContext = createContext<CatsContextInterface>(
@@ -25,8 +29,10 @@ const CatProvider = ({ children }: ContextProps) => {
   const [searchResults, setSearchResults] = useState<ICat[]>([]);
 
   const catsCollectionRef = collection(db, catsDB);
+  const first = query(catsCollectionRef, orderBy("name"), limit(5));
 
   const getCats = async () => {
+    // const data = await getDocs(first);
     const data = await getDocs(catsCollectionRef);
     const tempCats = data.docs.map((doc) => ({
       ...doc.data(),
@@ -100,7 +106,7 @@ const CatProvider = ({ children }: ContextProps) => {
     if (user) {
       getCats();
 
-      // addNewCat(CreateCatObj());
+      //addNewCat(CreateCatObj());
     }
 
     // eslint-disable-next-line

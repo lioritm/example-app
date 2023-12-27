@@ -2,6 +2,7 @@ import React from "react";
 import { UserAuth } from "../../context/AuthContext";
 import { Link, useNavigate } from "react-router-dom";
 import { showError } from "../../utils/utils";
+import { FaArrowLeft } from "react-icons/fa";
 const Forgot = () => {
   const [submitting, setSubmitting] = React.useState<boolean>(false);
   const [email, setEmail] = React.useState<string>("");
@@ -25,24 +26,48 @@ const Forgot = () => {
     }
   };
   return (
-    <>
-      <form onSubmit={handleSubmit}>
-        <input
-          type="email"
-          placeholder="username"
-          onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
-            setEmail(event.target.value)
-          }
-        />
-        <button disabled={submitting || !email}>Reset Password</button>
-      </form>
-      <div style={{ color: "red" }}>{error}</div>
-      <Link to="/">
-        <div>
-          <span>Back to login</span>
+    <div className="login-page">
+      <h1>Welcome to my cat management app</h1>
+      <div className="login-wrapper">
+        <div className="login-container">
+          <h2> Reset Password</h2>
+          <form onSubmit={handleSubmit}>
+            <div className="form-element">
+              <div className="label">
+                <label htmlFor="userName">User Name</label>
+              </div>
+              <div>
+                <input
+                  type="email"
+                  placeholder="User Name"
+                  id="userName"
+                  onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
+                    setEmail(event.target.value)
+                  }
+                />
+              </div>
+            </div>
+            <div className="button-wrapper">
+              <button
+                className="general-button"
+                disabled={submitting || !email}
+              >
+                Reset Password
+              </button>
+            </div>
+          </form>
+          <div style={{ color: "red" }}>{error}</div>
         </div>
-      </Link>
-    </>
+      </div>
+      <div className="back-to-login">
+        <Link to="/">
+          <span className="back">
+            <FaArrowLeft />
+            <span>Back to login</span>
+          </span>
+        </Link>
+      </div>
+    </div>
   );
 };
 

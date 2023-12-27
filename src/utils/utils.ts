@@ -29,18 +29,6 @@ export const sortByParam = (param: string, cats: ICat[], ascending = true) => {
   let sorted;
   if (param === "birthdate") {
     sorted = cats.sort((a: ICat, b: ICat) => {
-      if (!b.birthdate) {
-        b.birthdate = {
-          nanoseconds: 0,
-          seconds: 0,
-        };
-      }
-      if (!a.birthdate) {
-        a.birthdate = {
-          nanoseconds: 0,
-          seconds: 0,
-        };
-      }
       if (!ascending) {
         return b!.birthdate!.seconds - a!.birthdate?.seconds;
       } else {

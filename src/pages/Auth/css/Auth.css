@@ -1,0 +1,63 @@
+.login-page {
+  background: url("../../../images/cat.png") no-repeat;
+  width: 100vw;
+  height: 100vh;
+  background-position: right center;
+  background-size: 50%;
+}
+.login-wrapper {
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.login-container {
+  border: 1px solid #ddd;
+  border-radius: 0.3rem;
+  width: 28rem;
+  font-size: 1em;
+  line-height: 1.5em;
+  margin: 1.5rem auto 0;
+  padding: 1.5rem 2.5rem;
+}
+.login-container h2 {
+  text-align: center;
+}
+.login-container form input {
+  width: calc(100% - (0.8rem + 2px));
+  border: 1px solid #ddd;
+  border-radius: 0.3rem;
+  padding: 0.2rem 0.4rem;
+  height: 2rem;
+}
+.form-element {
+  margin-bottom: 1.5rem;
+}
+.form-element .label {
+  margin-bottom: 0.2rem;
+}
+.forgot-wrapper {
+  text-align: center;
+}
+.forgot {
+  font-size: 0.75rem;
+}
+.button-wrapper {
+  text-align: center;
+  margin: 2.5rem 0 1.5rem;
+}
+.button-wrapper .general-button {
+  padding: 0.5rem 2rem;
+  margin: auto;
+  display: inline-block;
+}
+.show-pass {
+  position: absolute;
+  top: 0.45rem;
+  right: 0.5rem;
+  cursor: pointer;
+}
+.back-to-login {
+  text-align: center;
+  margin-top: 1rem;
+}

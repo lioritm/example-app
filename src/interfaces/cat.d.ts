@@ -1,3 +1,4 @@
+import { Timestamp } from "firebase/firestore";
 export interface ICat {
   id: string;
   ownerName: string;
@@ -5,23 +6,11 @@ export interface ICat {
   dewormed: boolean;
   gender: string;
   vaccinated: boolean;
-  dateOfVaccine?: {
-    nanoseconds: number;
-    seconds: number;
-  };
-  dateOfDeworm?: {
-    nanoseconds: number;
-    seconds: number;
-  };
-  dateOfsterilization?: {
-    nanoseconds: number;
-    seconds: number;
-  };
+  dateOfVaccine?: Timestamp;
+  dateOfDeworm?: Timestamp;
+  dateOfsterilization?: Timestamp;
   sterilized: boolean;
-  birthdate: {
-    nanoseconds: number;
-    seconds: number;
-  };
+  birthdate: Timestamp;
 }
 
 export interface CatReportData {
@@ -38,6 +27,7 @@ interface catList {
 }
 interface ICatComp {
   selectedCat: ICat;
+  setEditMode: React.Dispatch<React.SetStateAction>;
   setSelectedCat: React.Dispatch<React.SetStateAction>;
 }
 
@@ -46,4 +36,8 @@ interface IAddEditCat {
   cat?: ICat;
   setEditMode?: React.Dispatch<React.SetStateAction>;
   setSelectedCat?: React.Dispatch<React.SetStateAction>;
+}
+interface IDeleteModal {
+  id: string;
+  closeModal: function;
 }

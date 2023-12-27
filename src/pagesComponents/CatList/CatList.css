@@ -50,3 +50,6 @@
   background: transparent;
   border: none;
 }
+.table-cell > svg {
+  margin-left: 0.25rem;
+}

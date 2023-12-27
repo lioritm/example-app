@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form";
 import { ICat, IAddEditCat } from "../../interfaces/cat";
 import { useNavigate } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
+import "./AddEditCat.css";
 const AddEditCat = ({
   editMode,
   cat,
@@ -97,76 +98,128 @@ const AddEditCat = ({
     setValue,
   ]);
   return (
-    <>
+    <div className="cat-info-container">
       <form onSubmit={onSubmit}>
-        <input type="text" placeholder="Cat name" {...register("name")} />
-        <input
-          type="text"
-          placeholder="Owner name"
-          {...register("ownerName")}
-        />
-        <select {...register("gender")} required defaultValue={"DEFAULT"}>
-          <option className="disabled" value="DEFAULT" disabled>
-            Select gender
-          </option>
-          <option value="Male">Male</option>
-          <option value="Female">Female</option>
-        </select>
-        <input
-          type="date"
-          placeholder="date of birth"
-          {...register("birthdate")}
-        />
-        <select {...register("sterilized")} defaultValue={"DEFAULT"}>
-          <option className="disabled" value="DEFAULT" disabled>
-            Select sterilization status
-          </option>
-          <option value="true">Yes</option>
-          <option value="false">No</option>
-        </select>
+        <div className="flex cat-info-box">
+          <div className="box-item box-key">Cat name:</div>
+          <div className="box-item box-value">
+            <input type="text" placeholder="Cat name" {...register("name")} />
+          </div>
+        </div>
+        <div className="flex cat-info-box">
+          <div className="box-item box-key">Owner name:</div>
+          <div className="box-item box-value">
+            {" "}
+            <input
+              type="text"
+              placeholder="Owner name"
+              {...register("ownerName")}
+            />
+          </div>
+        </div>
+        <div className="flex cat-info-box">
+          <div className="box-item box-key">Gender:</div>
+          <div className="box-item box-value">
+            {" "}
+            <select {...register("gender")} required defaultValue={""}>
+              <option className="disabled" value="" disabled>
+                Select gender
+              </option>
+              <option value="Male">Male</option>
+              <option value="Female">Female</option>
+            </select>
+          </div>
+        </div>
+        <div className="flex cat-info-box">
+          <div className="box-item box-key">Birthdate:</div>
+          <div className="box-item box-value">
+            <input
+              type="date"
+              placeholder="date of birth"
+              {...register("birthdate")}
+            />
+          </div>
+        </div>
+        <div className="flex cat-info-box">
+          <div className="box-item box-key">Sterilized:</div>
+          <div className="box-item box-value">
+            <select {...register("sterilized")} defaultValue={""}>
+              <option className="disabled" value="" disabled>
+                Select sterilization status
+              </option>
+              <option value="true">Yes</option>
+              <option value="false">No</option>
+            </select>
+          </div>
+        </div>
+
         {(watchedValue.sterilized === "true" ||
           watchedValue.dateOfsterilization) && (
-          <input
-            type="date"
-            placeholder="date of sterilization"
-            {...register("dateOfsterilization")}
-          />
+          <div className="flex cat-info-box">
+            <div className="box-item box-key">Sterilization date:</div>
+            <div className="box-item box-value">
+              <input
+                type="date"
+                placeholder="date of sterilization"
+                {...register("dateOfsterilization")}
+              />
+            </div>
+          </div>
         )}
-
-        <select {...register("vaccinated")} defaultValue={"DEFAULT"}>
-          <option className="disabled" value="DEFAULT" disabled>
-            Select vaccination status
-          </option>
-          <option value="true">Yes</option>
-          <option value="false">No</option>
-        </select>
+        <div className="flex cat-info-box">
+          <div className="box-item box-key">Vaccinated:</div>
+          <div className="box-item box-value">
+            <select {...register("vaccinated")} defaultValue={"DEFAULT"}>
+              <option className="disabled" value="DEFAULT" disabled>
+                Select vaccination status
+              </option>
+              <option value="true">Yes</option>
+              <option value="false">No</option>
+            </select>
+          </div>
+        </div>
 
         {(watchedValue.vaccinated === "true" || watchedValue.dateOfVaccine) && (
-          <input
-            type="date"
-            placeholder="date of vaccination"
-            {...register("dateOfVaccine")}
-          />
+          <div className="flex cat-info-box">
+            <div className="box-item box-key">Last vaccination date:</div>
+            <div className="box-item box-value">
+              <input
+                type="date"
+                placeholder="date of vaccination"
+                {...register("dateOfVaccine")}
+              />
+            </div>
+          </div>
         )}
+        <div className="flex cat-info-box">
+          <div className="box-item box-key">Dewormed:</div>
+          <div className="box-item box-value">
+            <select {...register("dewormed")} defaultValue={"DEFAULT"}>
+              <option className="disabled" value="DEFAULT" disabled>
+                Select deworming status
+              </option>
+              <option value="true">Yes</option>
+              <option value="false">No</option>
+            </select>
+          </div>
+        </div>
 
-        <select {...register("dewormed")} defaultValue={"DEFAULT"}>
-          <option className="disabled" value="DEFAULT" disabled>
-            Select deworming status
-          </option>
-          <option value="true">Yes</option>
-          <option value="false">No</option>
-        </select>
         {(watchedValue.dewormed === "true" || watchedValue.dateOfDeworm) && (
-          <input
-            type="date"
-            placeholder="date of deworming"
-            {...register("dateOfDeworm")}
-          />
+          <div className="flex cat-info-box">
+            <div className="box-item box-key">Last deworming date:</div>
+            <div className="box-item box-value">
+              <input
+                type="date"
+                placeholder="date of deworming"
+                {...register("dateOfDeworm")}
+              />
+            </div>
+          </div>
         )}
 
-        <input type="submit" />
+        <input type="submit" className="general-button" />
       </form>
-    </>
+    </div>
   );
 };
 
