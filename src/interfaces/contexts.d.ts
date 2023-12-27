@@ -8,6 +8,7 @@ export interface AuthContextInterface {
   user: User | null;
   logout: () => Promise<void>;
   signIn: (email: string, password: string) => Promise<UserCredential>;
+  signUp: (email: string, password: string) => Promise<UserCredential>;
   resetPassword: (email: string) => Promise<void>;
 }
 

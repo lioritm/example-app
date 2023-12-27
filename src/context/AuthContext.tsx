@@ -4,6 +4,7 @@ import {
   signInWithEmailAndPassword,
   signOut,
   onAuthStateChanged,
+  createUserWithEmailAndPassword,
 } from "firebase/auth";
 import { auth } from "../config/firebase";
 import { ContextProps } from "../interfaces/contexts";
@@ -23,6 +24,10 @@ export const AuthContextProvider = ({ children }: ContextProps) => {
     return signInWithEmailAndPassword(auth, email, password);
   };
 
+  const signUp = (email: string, password: string) => {
+    return createUserWithEmailAndPassword(auth, email, password);
+  };
+
   const logout = () => {
     return signOut(auth);
   };
@@ -37,7 +42,9 @@ export const AuthContextProvider = ({ children }: ContextProps) => {
   }, []);
 
   return (
-    <UserContext.Provider value={{ user, logout, signIn, resetPassword }}>
+    <UserContext.Provider
+      value={{ user, logout, signIn, resetPassword, signUp }}
+    >
       {children}
     </UserContext.Provider>
   );

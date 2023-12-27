@@ -1,13 +1,11 @@
 import React from "react";
+import { FaArrowLeft, FaEye, FaEyeSlash } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
 import { UserAuth } from "../../context/AuthContext";
-import { FaEye, FaEyeSlash } from "react-icons/fa";
-
 import { showError } from "../../utils/utils";
-import "./css/Auth.css";
 
-const Login = () => {
-  const { signIn, user } = UserAuth();
+const CreateNewUser = () => {
+  const { signUp } = UserAuth();
   const [email, setEmail] = React.useState<string>("");
   const [password, setPassword] = React.useState<string>("");
   const [error, setError] = React.useState<string>("");
@@ -17,13 +15,12 @@ const Login = () => {
   const toggleView = () => {
     setShowPassword((prevValue) => !prevValue);
   };
-
   const handleSubmit = async (event: React.SyntheticEvent) => {
     setAuthenticating(true);
     event.preventDefault();
     setError("");
     try {
-      await signIn(email, password);
+      await signUp(email, password);
       navigate("/cats");
     } catch (err) {
       const typedError = err as Error;
@@ -33,11 +30,6 @@ const Login = () => {
       setAuthenticating(false);
     }
   };
-  React.useEffect(() => {
-    if (user) {
-      navigate("/cats");
-    }
-  }, [user, navigate]);
   return (
     <div className="login-page">
       <h1>Welcome to my cat management app</h1>
@@ -87,31 +79,30 @@ const Login = () => {
                 </div>
               </div>
             </div>
+
             <div className="button-wrapper">
               <button
                 className="general-button"
                 disabled={authenticating || !email || !password}
               >
-                Log in
+                Sign up
               </button>
             </div>
           </form>
 
           <div style={{ color: "red" }}>{error}</div>
-          <div className="forgot-wrapper">
-            <Link className="forgot" to="/reset-password">
-              Forgot password?
-            </Link>
-          </div>
-          <div className="forgot-wrapper">
-            <Link className="forgot" to="/create-new-user">
-              New user?
-            </Link>
-          </div>
         </div>
+      </div>
+      <div className="back-to-login">
+        <Link to="/">
+          <span className="back">
+            <FaArrowLeft />
+            <span>Back to login</span>
+          </span>
+        </Link>
       </div>
     </div>
   );
 };
 
-export default Login;
+export default CreateNewUser;
