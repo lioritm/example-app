@@ -13,7 +13,13 @@ const AddEditCat = ({
   setSelectedCat,
 }: IAddEditCat) => {
   const { addNewCat, updateCat } = React.useContext(CatContext);
-  const { register, handleSubmit, watch, setValue } = useForm();
+  const {
+    register,
+    handleSubmit,
+    watch,
+    setValue,
+    formState: { errors },
+  } = useForm();
   const navigate = useNavigate();
   const watchedValue = {
     vaccinated: watch("vaccinated"),
@@ -106,33 +112,56 @@ const AddEditCat = ({
           <div className="box-item box-value">
             <input
               type="text"
-              required
+              className={errors.name ? "form-error" : ""}
               placeholder="Cat name"
-              {...register("name")}
+              {...register("name", {
+                required: true,
+                minLength: 3,
+                maxLength: 40,
+              })}
             />
+            {errors.name && (
+              <span className="error">Please check the cat's name</span>
+            )}
           </div>
         </div>
         <div className="flex cat-info-box">
           <div className="box-item box-key">Owner name:</div>
           <div className="box-item box-value">
             <input
+              className={errors.ownerName ? "form-error" : ""}
               type="text"
-              required
               placeholder="Owner name"
-              {...register("ownerName")}
+              {...register("ownerName", {
+                required: true,
+                minLength: 3,
+                maxLength: 40,
+              })}
             />
+            {errors.ownerName && (
+              <span className="error">Please check the owner's name</span>
+            )}
           </div>
         </div>
         <div className="flex cat-info-box">
           <div className="box-item box-key">Gender:</div>
           <div className="box-item box-value">
-            <select {...register("gender")} required defaultValue={""}>
+            <select
+              {...register("gender", {
+                required: true,
+              })}
+              className={errors.gender ? "form-error" : ""}
+              defaultValue={""}
+            >
               <option className="disabled" value="" disabled>
                 Select gender
               </option>
               <option value="Male">Male</option>
               <option value="Female">Female</option>
             </select>
+            {errors.gender && (
+              <span className="error">Please select gender</span>
+            )}
           </div>
         </div>
         <div className="flex cat-info-box">
@@ -140,22 +169,36 @@ const AddEditCat = ({
           <div className="box-item box-value">
             <input
               type="date"
-              required
+              className={errors.birthdate ? "form-error" : ""}
               placeholder="date of birth"
-              {...register("birthdate")}
+              {...register("birthdate", {
+                required: true,
+              })}
             />
+            {errors.birthdate && (
+              <span className="error">Please enter birthdate</span>
+            )}
           </div>
         </div>
         <div className="flex cat-info-box">
           <div className="box-item box-key">Sterilized:</div>
           <div className="box-item box-value">
-            <select {...register("sterilized")} required defaultValue={""}>
+            <select
+              className={errors.sterilized ? "form-error" : ""}
+              {...register("sterilized", {
+                required: true,
+              })}
+              defaultValue={""}
+            >
               <option className="disabled" value="" disabled>
                 Select sterilization status
               </option>
               <option value="true">Yes</option>
               <option value="false">No</option>
             </select>
+            {errors.sterilized && (
+              <span className="error">Please select sterilization status</span>
+            )}
           </div>
         </div>
 
@@ -176,13 +219,20 @@ const AddEditCat = ({
         <div className="flex cat-info-box">
           <div className="box-item box-key">Vaccinated:</div>
           <div className="box-item box-value">
-            <select {...register("vaccinated")} required defaultValue={""}>
+            <select
+              {...register("vaccinated")}
+              className={errors.sterilized ? "form-error" : ""}
+              defaultValue={""}
+            >
               <option className="disabled" value="" disabled>
                 Select vaccination status
               </option>
               <option value="true">Yes</option>
               <option value="false">No</option>
             </select>
+            {errors.vaccinated && (
+              <span className="error">Please select vaccination status</span>
+            )}
           </div>
         </div>
 

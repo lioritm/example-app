@@ -46,6 +46,7 @@ const Forgot = () => {
                   }
                 />
               </div>
+              <div className="error">{error}</div>
             </div>
             <div className="button-wrapper">
               <button
@@ -56,7 +57,6 @@ const Forgot = () => {
               </button>
             </div>
           </form>
-          <div style={{ color: "red" }}>{error}</div>
         </div>
       </div>
       <div className="back-to-login">

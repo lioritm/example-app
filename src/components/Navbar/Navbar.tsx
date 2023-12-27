@@ -14,7 +14,11 @@ export const Navbar = () => {
       console.log(typedError?.message);
     }
   };
-  if (location.pathname === "/" || location.pathname === "/reset-password") {
+  if (
+    location.pathname === "/" ||
+    location.pathname === "/reset-password" ||
+    location.pathname === "/create-new-user"
+  ) {
     return <></>;
   }
   return (

@@ -87,6 +87,7 @@ const Login = () => {
                 </div>
               </div>
             </div>
+            <div className="error">{error}</div>
             <div className="button-wrapper">
               <button
                 className="general-button"
@@ -97,7 +98,6 @@ const Login = () => {
             </div>
           </form>
 
-          <div style={{ color: "red" }}>{error}</div>
           <div className="forgot-wrapper">
             <Link className="forgot" to="/reset-password">
               Forgot password?

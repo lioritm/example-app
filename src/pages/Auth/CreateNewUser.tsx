@@ -35,7 +35,7 @@ const CreateNewUser = () => {
       <h1>Welcome to my cat management app</h1>
       <div className="login-wrapper">
         <div className="login-container">
-          <h2>Login</h2>
+          <h2>Sign up</h2>
           <form onSubmit={handleSubmit}>
             <div className="form-element">
               <div className="label">
@@ -78,6 +78,7 @@ const CreateNewUser = () => {
                   )}
                 </div>
               </div>
+              <div className="error">{error}</div>
             </div>
 
             <div className="button-wrapper">
@@ -89,8 +90,6 @@ const CreateNewUser = () => {
               </button>
             </div>
           </form>
-
-          <div style={{ color: "red" }}>{error}</div>
         </div>
       </div>
       <div className="back-to-login">

@@ -55,3 +55,12 @@ code {
 .relative {
   position: relative;
 }
+.error {
+  color: red;
+  font-size: 0.75rem;
+  display: block;
+  margin-top: 0.5rem;
+}
+.form-error {
+  border-color: red !important;
+}
