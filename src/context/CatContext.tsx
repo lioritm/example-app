@@ -14,7 +14,7 @@ import {
   // limit,
 } from "firebase/firestore";
 import { db, catsDB } from "../config/firebase";
-import { UserAuth } from "./AuthContext";
+
 //import { CreateCatObj } from "../utils/createData";
 
 //import { sortByParam } from "../utils/utils";
@@ -23,7 +23,6 @@ export const CatContext = createContext<CatsContextInterface>(
 );
 
 const CatProvider = ({ children }: ContextProps) => {
-  const { user } = UserAuth();
   const [cats, setCats] = useState<ICat[]>([]);
   const [search, setSearch] = useState<string>("");
   const [searchResults, setSearchResults] = useState<ICat[]>([]);
@@ -102,15 +101,6 @@ const CatProvider = ({ children }: ContextProps) => {
   //     }
   //   });
   // };
-  useEffect(() => {
-    if (user) {
-      getCats();
-
-      //addNewCat(CreateCatObj());
-    }
-
-    // eslint-disable-next-line
-  }, [user]);
 
   useEffect(() => {
     setSearchResults(cats);
@@ -140,6 +130,7 @@ const CatProvider = ({ children }: ContextProps) => {
         updateCat,
         addNewCat,
         deleteCat,
+        getCats,
       }}
     >
       {children}

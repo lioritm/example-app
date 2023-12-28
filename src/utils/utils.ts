@@ -23,6 +23,16 @@ export const returnDate = (secs: number) => {
 
   return formattedDate;
 };
+export const formatDate = (date: Date, years?: number, months?: number) => {
+  if (years) {
+    date.setFullYear(date.getFullYear() + years);
+  }
+  if (months) {
+    date.setMonth(date.getMonth() + months);
+  }
+
+  return date.toISOString().split("T")[0];
+};
 export const sortByParam = (param: string, cats: ICat[], ascending = true) => {
   window.localStorage.setItem(
     "searchParam",

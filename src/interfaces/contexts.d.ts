@@ -23,4 +23,5 @@ export interface CatsContextInterface {
   addNewCat: (newCat: ICat) => Promise<void>;
   updateCat: (cat: ICat, changes: object) => Promise<void>;
   deleteCat: (id: string) => Promise<void>;
+  getCats: () => Promise<void>;
 }

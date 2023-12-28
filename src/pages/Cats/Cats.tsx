@@ -7,7 +7,8 @@ import CatList from "../../pagesComponents/CatList/CatList";
 import Searchbar from "../../components/Searchbar/Searchbar";
 import "./Cats.css";
 const Cats = () => {
-  const { searchResults, search, setSearch } = React.useContext(CatContext);
+  const { searchResults, search, setSearch, getCats } =
+    React.useContext(CatContext);
   const { user } = UserAuth();
   const [cats, setCats] = React.useState<ICat[]>([]);
   React.useEffect(() => {
@@ -18,6 +19,15 @@ const Cats = () => {
   React.useEffect(() => {
     setCats(searchResults);
   }, [searchResults]);
+  React.useEffect(() => {
+    if (user) {
+      getCats();
+
+      //addNewCat(CreateCatObj());
+    }
+
+    // eslint-disable-next-line
+  }, [user]);
 
   return (
     <section className="container page">
