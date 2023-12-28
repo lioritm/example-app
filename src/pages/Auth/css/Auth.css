@@ -61,3 +61,9 @@
   text-align: center;
   margin-top: 1rem;
 }
+
+@media screen and (max-width: 950px) {
+  .login-page {
+    background-position: right bottom;
+  }
+}

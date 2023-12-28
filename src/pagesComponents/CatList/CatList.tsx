@@ -187,14 +187,14 @@ const CatList = ({ cats, setCats }: catList) => {
                 <span className="actions">
                   <Link className="table-cell" to={`/cats/${cat.id}?edit`}>
                     <FaRegEdit />
-                    <span className="for-mobile">Edit: </span>
+                    <span className="for-mobile">Edit </span>
                   </Link>
                   <button
                     className="table-cell"
                     onClick={() => handleDelete(cat.id!)}
                   >
                     <FaTrash />
-                    <span className="for-mobile">Delete: </span>
+                    <span className="for-mobile">Delete </span>
                   </button>
                 </span>
               </div>
