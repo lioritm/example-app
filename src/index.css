@@ -67,3 +67,8 @@ code {
 input {
   outline: none;
 }
+@media screen and (max-width: 950px) {
+  .back {
+    margin-left: 0.5rem;
+  }
+}

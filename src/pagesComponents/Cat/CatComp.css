@@ -35,3 +35,21 @@
 .action {
   margin-left: 0.2rem;
 }
+@media screen and (max-width: 950px) {
+  .cat-info-container {
+    width: 95vw;
+    padding: 0;
+  }
+  .cat-info-box {
+    width: auto;
+  }
+  .box-item {
+    padding: 1rem 0.5rem;
+  }
+  .box-item.box-value {
+    width: 55%;
+  }
+  .box-item.box-key {
+    width: 45%;
+  }
+}

@@ -14,6 +14,7 @@ import {
   // limit,
 } from "firebase/firestore";
 import { db, catsDB } from "../config/firebase";
+import { UserAuth } from "./AuthContext";
 
 //import { CreateCatObj } from "../utils/createData";
 
@@ -26,7 +27,7 @@ const CatProvider = ({ children }: ContextProps) => {
   const [cats, setCats] = useState<ICat[]>([]);
   const [search, setSearch] = useState<string>("");
   const [searchResults, setSearchResults] = useState<ICat[]>([]);
-
+  const { user } = UserAuth();
   const catsCollectionRef = collection(db, catsDB);
   // const first = query(catsCollectionRef, orderBy("name"), limit(5));
 
@@ -94,6 +95,15 @@ const CatProvider = ({ children }: ContextProps) => {
       console.log(err);
     }
   };
+  useEffect(() => {
+    if (user) {
+      getCats();
+
+      //addNewCat(CreateCatObj());
+    }
+
+    // eslint-disable-next-line
+  }, [user]);
   // const deleteAll = (cats: ICat[]) => {
   //   cats.forEach((cat) => {
   //     if (cat.ownerName !== "Liorit" && cat.ownerName !== "Liat") {

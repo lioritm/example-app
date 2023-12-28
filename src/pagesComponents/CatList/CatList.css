@@ -68,12 +68,19 @@
   }
 }
 @media screen and (max-width: 950px) {
+  .table {
+    border: none;
+  }
   .table-head {
     display: none;
   }
   .table-row,
   .table-row-devided {
     flex-direction: column;
+  }
+  .table-row {
+    margin-bottom: 1rem;
+    border: 1px solid #ddd;
   }
   .for-mobile {
     display: inline-block;

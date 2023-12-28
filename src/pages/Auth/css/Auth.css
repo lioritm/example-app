@@ -66,4 +66,7 @@
   .login-page {
     background-position: right 70%;
   }
+  .login-container {
+    width: 20rem;
+  }
 }
