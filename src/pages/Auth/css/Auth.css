@@ -64,6 +64,6 @@
 
 @media screen and (max-width: 950px) {
   .login-page {
-    background-position: right bottom;
+    background-position: right 70%;
   }
 }
