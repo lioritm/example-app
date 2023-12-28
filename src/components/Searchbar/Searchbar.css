@@ -2,7 +2,8 @@
   border: 1px solid #999999;
   border-radius: 0.5rem;
   overflow: hidden;
-  width: 40rem;
+  width: 90%;
+  max-width: 40rem;
   display: flex;
   align-items: center;
   height: 3rem;

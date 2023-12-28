@@ -27,14 +27,14 @@
 }
 .table-row-devided {
   display: flex;
-  width: 80%;
+  width: 85%;
   text-decoration: none;
   color: #000;
 }
 
 .actions {
   display: flex;
-  width: 20%;
+  width: 15%;
 }
 .table-cell {
   display: flex;
@@ -52,4 +52,36 @@
 }
 .table-cell > svg {
   margin-left: 0.25rem;
+}
+.for-mobile {
+  display: none;
+  font-weight: bold;
+}
+@media screen and (min-width: 1048px) and (max-width: 1200px) {
+  .table-head .table-row .table-cell {
+    font-size: 14px;
+  }
+}
+@media screen and (min-width: 949px) and (max-width: 1047px) {
+  .table-head .table-row .table-cell {
+    font-size: 13px;
+  }
+}
+@media screen and (max-width: 950px) {
+  .table-head {
+    display: none;
+  }
+  .table-row,
+  .table-row-devided {
+    flex-direction: column;
+  }
+  .for-mobile {
+    display: inline-block;
+  }
+  .table-row-devided .table-cell .for-mobile {
+    margin-right: 0.2rem;
+  }
+  .actions .table-cell .for-mobile {
+    margin-left: 0.2rem;
+  }
 }

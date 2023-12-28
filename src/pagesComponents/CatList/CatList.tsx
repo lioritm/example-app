@@ -154,31 +154,47 @@ const CatList = ({ cats, setCats }: catList) => {
             return (
               <div key={cat.id} className="table-row">
                 <Link className="table-row-devided" to={`/cats/${cat.id}`}>
-                  <span className="table-cell">{cat.name}</span>
-                  <span className="table-cell">{cat.ownerName}</span>
-                  <span className="table-cell">{cat.gender}</span>
                   <span className="table-cell">
+                    <span className="for-mobile">Cat name: </span>
+                    {cat.name}
+                  </span>
+                  <span className="table-cell">
+                    <span className="for-mobile">Owner name: </span>
+                    {cat.ownerName}
+                  </span>
+                  <span className="table-cell">
+                    <span className="for-mobile">Gender: </span>
+                    {cat.gender}
+                  </span>
+                  <span className="table-cell">
+                    <span className="for-mobile">Birthdate: </span>
                     {cat.birthdate ? returnDate(cat.birthdate.seconds) : ""}
                   </span>
                   <span className="table-cell">
+                    <span className="for-mobile">Sterilized: </span>
                     {cat.sterilized ? "Yes" : "No"}
                   </span>
                   <span className="table-cell">
+                    <span className="for-mobile">Vaccinated: </span>
+
                     {cat.vaccinated ? "Yes" : "No"}
                   </span>
                   <span className="table-cell">
+                    <span className="for-mobile">Dewormed: </span>
                     {cat.dewormed ? "Yes" : "No"}
                   </span>
                 </Link>
                 <span className="actions">
                   <Link className="table-cell" to={`/cats/${cat.id}?edit`}>
                     <FaRegEdit />
+                    <span className="for-mobile">Edit: </span>
                   </Link>
                   <button
                     className="table-cell"
                     onClick={() => handleDelete(cat.id!)}
                   >
                     <FaTrash />
+                    <span className="for-mobile">Delete: </span>
                   </button>
                 </span>
               </div>

@@ -16,3 +16,8 @@ export interface IModal {
   okText?: string;
   cancelText?: string;
 }
+
+export interface IAuthForm {
+  type: { type: "login" | "signup" | "forgot" };
+  handleSubmit: function;
+}
