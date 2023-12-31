@@ -3,17 +3,16 @@ import { UserAuth } from "../../context/AuthContext";
 import { Link, useNavigate } from "react-router-dom";
 import { showError } from "../../utils/utils";
 import { FaArrowLeft } from "react-icons/fa";
+import AuthForm from "../../pagesComponents/AuthComps/AuthForm/AuthForm";
 const Forgot = () => {
   const [submitting, setSubmitting] = React.useState<boolean>(false);
-  const [email, setEmail] = React.useState<string>("");
   const [error, setError] = React.useState<string>("");
   const { resetPassword } = UserAuth();
 
   const navigate = useNavigate();
 
-  const handleSubmit = async (event: React.SyntheticEvent) => {
+  const handleSubmit = async (email: string) => {
     setSubmitting(true);
-    event.preventDefault();
     setError("");
     try {
       await resetPassword(email);
@@ -31,32 +30,13 @@ const Forgot = () => {
       <div className="login-wrapper">
         <div className="login-container">
           <h2> Reset Password</h2>
-          <form onSubmit={handleSubmit}>
-            <div className="form-element">
-              <div className="label">
-                <label htmlFor="userName">User Name</label>
-              </div>
-              <div>
-                <input
-                  type="email"
-                  placeholder="User Name"
-                  id="userName"
-                  onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
-                    setEmail(event.target.value)
-                  }
-                />
-              </div>
-              <div className="error">{error}</div>
-            </div>
-            <div className="button-wrapper">
-              <button
-                className="general-button"
-                disabled={submitting || !email}
-              >
-                Reset Password
-              </button>
-            </div>
-          </form>
+          <AuthForm
+            type="forgot"
+            handleSubmit={handleSubmit}
+            error={error}
+            authenticating={submitting}
+            setAuthenticating={setSubmitting}
+          />
         </div>
       </div>
       <div className="back-to-login">

@@ -14,7 +14,7 @@ const ProtectedRoute = (props: IProtectedRoutes) => {
       if (user) {
         setLoading(false);
       } else {
-        navigate("/");
+        //    navigate("/");
       }
     });
 

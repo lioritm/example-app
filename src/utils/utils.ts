@@ -1,15 +1,19 @@
 import { ICat } from "../interfaces/cat";
 
 export const showError = (error: string, email?: string) => {
-  return error.indexOf("invalid-credential") >= 0
-    ? `Invalid username or password`
-    : error.indexOf("wrong-password") >= 0
-    ? "Incorrect password"
-    : error.indexOf("invalid-email") >= 0
-    ? `${email} is an invalid email`
-    : error.indexOf("email-already-in-use")
-    ? "Email address is already registered"
-    : "Unknown Error";
+  if (error.indexOf("invalid-credential") >= 0) {
+    return "Invalid username or password";
+  } else if (error.indexOf("wrong-password") >= 0) {
+    return "Incorrect password";
+  } else if (error.indexOf("invalid-email") >= 0) {
+    return `${email} is an invalid email`;
+  } else if (error.indexOf("email-already-in-use") >= 0) {
+    return "Email address is already registered";
+  } else if (error.indexOf("user-not-found") >= 0) {
+    return `User ${email} wasn't found`;
+  } else {
+    return error;
+  }
 };
 export const returnDate = (secs: number) => {
   const date = new Date(secs * 1000);

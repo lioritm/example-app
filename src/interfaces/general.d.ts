@@ -18,6 +18,15 @@ export interface IModal {
 }
 
 export interface IAuthForm {
-  type: { type: "login" | "signup" | "forgot" };
+  type: "login" | "signup" | "forgot";
   handleSubmit: function;
+  authenticating: boolean;
+  error: string;
+  setAuthenticating: React.Dispatch<React.SetStateAction>;
+}
+
+export interface IAuthCred {
+  email: string;
+  password?: string;
+  repeatPassword?: string;
 }
