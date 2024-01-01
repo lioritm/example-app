@@ -1,0 +1,93 @@
+{
+  "home": {
+    "title": "Cat List",
+    "noCats": "No cats found"
+  },
+  "nav": {
+    "home": "Home",
+    "addNew": "Add new cat",
+    "logout": "Log out"
+  },
+  "cats": {
+    "props": {
+      "name": "Cat Name",
+      "ownerName": "Owner Name",
+      "gender": "Gender",
+      "birthdate": "Birthdate",
+      "sterilized": "Sterilized",
+      "vaccinated": "Vaccinated",
+      "dewormed": "Dewormed",
+      "dateOfsterilization": "Sterilization date",
+      "dateOfVaccination": "Last vaccination date",
+      "dateOfDeworming": "Last deworming date"
+    },
+    "cat": {
+      "pageTitle": "Cat Management Board",
+      "form": {
+        "gender": "Select gender",
+        "male": "Male",
+        "female": "Female",
+        "sterilization": "select sterilization status",
+        "dateOfsterilization": "Sterilization date",
+        "vaccination": "Select vaccination status",
+        "dateOfVaccination": "Last vaccination date",
+        "deworming": "Select deworming status",
+        "dateOfDeworming": "Last deworming date",
+        "errors": {
+          "name": "Please check the cat's name",
+          "ownerName": "Please check the owner's name",
+          "gender": "Please select gender",
+          "birthdate": "Please enter a valid birthdate",
+          "sterilization": "Please select sterilization status",
+          "sterilizationDate": "Please enter a valid sterilization date",
+          "vaccination": "Please select vaccination status",
+          "vaccinationDate": "Please enter a valid vaccination date",
+          "deworming": "Please select deworming status",
+          "dewormingDate": "Please enter a valid deworming date"
+        }
+      },
+      "errors": {
+        "name": "Please check the cat's name",
+        "ownerName": "Please check the owner's name"
+      }
+    },
+    "actions": {
+      "edit": "Edit",
+      "delete": "Delete",
+      "deleteWarning": "Cat can only be deleted by its creator",
+      "deleteModal": {
+        "title": "Delete cat",
+        "content": "Are you sure you want to delete this cat from the system?"
+      }
+    },
+    "search": "Search by cat name or owner name"
+  },
+  "auth": {
+    "title": "Welcome to my cat management app",
+    "login": "Login",
+    "loginButton": "Log in",
+    "forgotLink": "Forgot password",
+    "newUserLink": "New user",
+    "userName": "User Name",
+    "password": "Password",
+    "signUp": "Sign up",
+    "reset": "Reset Password",
+    "backToLogin": "Back to login"
+  },
+  "errors": {
+    "invalidCred": "Invalid username or password",
+    "incorrectPassword": "Incorrect Password",
+    "invalidEmail": "Email address is invalid",
+    "alreadyRegistered": "Email address is already registered",
+    "emailNotFound": "The email address wasn't found",
+    "unknown": "Unknown error"
+  },
+  "general": {
+    "yes": "Yes",
+    "no": "No",
+    "approve": "Approve",
+    "cancel": "Cancel",
+    "back": "Back",
+    "submit": "Submit"
+  }
+}

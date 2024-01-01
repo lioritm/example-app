@@ -5,11 +5,13 @@ import { UserAuth } from "../../context/AuthContext";
 import Loader from "../../shared/components/Loader/Loader";
 import CatList from "../../pagesComponents/CatList/CatList";
 import Searchbar from "../../components/Searchbar/Searchbar";
+import { useTranslation } from "react-i18next";
 import "./Cats.css";
 const Cats = () => {
   const { searchResults, search, setSearch } = React.useContext(CatContext);
   const { user } = UserAuth();
   const [cats, setCats] = React.useState<ICat[]>([]);
+  const { t } = useTranslation();
   React.useEffect(() => {
     setSearch("");
     // eslint-disable-next-line
@@ -26,10 +28,12 @@ const Cats = () => {
         <div></div>
       ) : (
         <>
-          <h1>Cat List {cats.length > 0 ? `(${cats.length})` : ""}</h1>
+          <h1>
+            {t("home.title")} {cats.length > 0 ? `(${cats.length})` : ""}
+          </h1>
           {cats.length === 0 && !search && <Loader />}
           {cats.length === 0 && search && (
-            <h3 className="text-center">No cats found</h3>
+            <h3 className="text-center">{t("home.noCats")}</h3>
           )}
           {cats.length > 0 && <CatList cats={cats} setCats={setCats} />}
         </>

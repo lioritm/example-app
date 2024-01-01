@@ -1,6 +1,5 @@
 import { Timestamp } from "firebase/firestore";
 import { ICat } from "../interfaces/cat";
-import { v4 as uuidv4 } from "uuid";
 export const catNames = require("cat-names");
 
 export const names = [
@@ -2767,7 +2766,7 @@ export const CreateCatObj = () => {
     new Date("2010-01-01"),
     new Date("2023-06-01")
   );
-  cat.id = uuidv4();
+
   cat.ownerName = selectOption(names);
   cat.name = catNames.random();
   cat.gender = selectOption(genderOptions);

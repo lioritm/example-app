@@ -2,17 +2,17 @@ import { ICat } from "../interfaces/cat";
 
 export const showError = (error: string, email?: string) => {
   if (error.indexOf("invalid-credential") >= 0) {
-    return "Invalid username or password";
+    return "errors.invalidCred";
   } else if (error.indexOf("wrong-password") >= 0) {
-    return "Incorrect password";
+    return "errors.incorrectPassword";
   } else if (error.indexOf("invalid-email") >= 0) {
-    return `${email} is an invalid email`;
+    return "errors.invalidEmail";
   } else if (error.indexOf("email-already-in-use") >= 0) {
-    return "Email address is already registered";
+    return "errors.alreadyRegistered";
   } else if (error.indexOf("user-not-found") >= 0) {
-    return `User ${email} wasn't found`;
+    return "errors.emailNotFound";
   } else {
-    return error;
+    return "errors.unknown";
   }
 };
 export const returnDate = (secs: number) => {

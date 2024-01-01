@@ -16,13 +16,17 @@ export interface IModal {
   okText?: string;
   cancelText?: string;
 }
-
+export type IAuthTypes = "login" | "signup" | "forgot";
 export interface IAuthForm {
-  type: "login" | "signup" | "forgot";
+  type: IAuthTypes;
   handleSubmit: function;
   authenticating: boolean;
   error: string;
   setAuthenticating: React.Dispatch<React.SetStateAction>;
+}
+export interface IAuthContainer {
+  type: IAuthTypes;
+  children: JSX.Element | JSX.Element[];
 }
 
 export interface IAuthCred {

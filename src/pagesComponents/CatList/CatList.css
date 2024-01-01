@@ -23,7 +23,7 @@
   border-bottom: 1px solid #dadada;
 }
 .table-row:hover {
-  background-color: #ddd;
+  background-color: #eee;
 }
 .table-row-devided {
   display: flex;

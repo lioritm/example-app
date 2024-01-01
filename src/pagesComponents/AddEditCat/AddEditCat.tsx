@@ -4,9 +4,10 @@ import { Timestamp } from "firebase/firestore";
 import { useForm } from "react-hook-form";
 import { ICat, IAddEditCat } from "../../interfaces/cat";
 import { useNavigate } from "react-router-dom";
-import { v4 as uuidv4 } from "uuid";
 import "./AddEditCat.css";
 import { formatDate } from "../../utils/utils";
+import { useTranslation } from "react-i18next";
+
 const AddEditCat = ({
   editMode,
   cat,
@@ -21,6 +22,7 @@ const AddEditCat = ({
     setValue,
     formState: { errors },
   } = useForm();
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const watchedValue = {
     vaccinated: watch("vaccinated"),
@@ -53,17 +55,16 @@ const AddEditCat = ({
           if (setSelectedCat) setSelectedCat(data as ICat);
         },
         (err) => {
-          console.log(err);
+          alert(err);
         }
       );
     } else {
-      data.id = uuidv4();
       addNewCat(data as ICat).then(
         () => {
           navigate("/");
         },
         (err) => {
-          console.log(err);
+          alert(err);
         }
       );
     }
@@ -121,12 +122,12 @@ const AddEditCat = ({
     <div className="cat-info-container">
       <form onSubmit={onSubmit}>
         <div className="flex cat-info-box">
-          <div className="box-item box-key">Cat name:</div>
+          <div className="box-item box-key">{t("cats.props.name")}:</div>
           <div className="box-item box-value">
             <input
               type="text"
               className={errors.name ? "form-error" : ""}
-              placeholder="Cat name"
+              placeholder={t("cats.props.name")}
               {...register("name", {
                 required: true,
                 minLength: 3,
@@ -134,17 +135,17 @@ const AddEditCat = ({
               })}
             />
             {errors.name && (
-              <span className="error">Please check the cat's name</span>
+              <span className="error">{t("cats.cat.form.errors.name")}</span>
             )}
           </div>
         </div>
         <div className="flex cat-info-box">
-          <div className="box-item box-key">Owner name:</div>
+          <div className="box-item box-key">{t("cats.props.ownerName")}:</div>
           <div className="box-item box-value">
             <input
               className={errors.ownerName ? "form-error" : ""}
               type="text"
-              placeholder="Owner name"
+              placeholder={t("cats.props.ownerName")}
               {...register("ownerName", {
                 required: true,
                 minLength: 3,
@@ -152,12 +153,14 @@ const AddEditCat = ({
               })}
             />
             {errors.ownerName && (
-              <span className="error">Please check the owner's name</span>
+              <span className="error">
+                {t("cats.cat.form.errors.ownerName")}
+              </span>
             )}
           </div>
         </div>
         <div className="flex cat-info-box">
-          <div className="box-item box-key">Gender:</div>
+          <div className="box-item box-key">{t("cats.props.gender")}:</div>
           <div className="box-item box-value">
             <select
               {...register("gender", {
@@ -167,23 +170,22 @@ const AddEditCat = ({
               defaultValue={""}
             >
               <option className="disabled" value="" disabled>
-                Select gender
+                {t("cats.cat.form.gender")}
               </option>
-              <option value="Male">Male</option>
-              <option value="Female">Female</option>
+              <option value="Male">{t("cats.cat.form.male")}</option>
+              <option value="Female">{t("cats.cat.form.female")}</option>
             </select>
             {errors.gender && (
-              <span className="error">Please select gender</span>
+              <span className="error">{t("cats.cat.form.errors.gender")}</span>
             )}
           </div>
         </div>
         <div className="flex cat-info-box">
-          <div className="box-item box-key">Birthdate:</div>
+          <div className="box-item box-key">{t("cats.props.birthdate")}:</div>
           <div className="box-item box-value">
             <input
               type="date"
               className={errors.birthdate ? "form-error" : ""}
-              placeholder="date of birth"
               {...register("birthdate", {
                 required: true,
                 min: formatDate(new Date(), -25),
@@ -191,12 +193,15 @@ const AddEditCat = ({
               })}
             />
             {errors.birthdate && (
-              <span className="error">Please enter a valid birthdate</span>
+              <span className="error">
+                {t("cats.cat.form.errors.birthdate")}
+              </span>
             )}
           </div>
         </div>
+
         <div className="flex cat-info-box">
-          <div className="box-item box-key">Sterilized:</div>
+          <div className="box-item box-key">{t("cats.props.sterilized")}:</div>
           <div className="box-item box-value">
             <select
               {...register("sterilized", {
@@ -208,11 +213,13 @@ const AddEditCat = ({
               <option className="disabled" value="" disabled>
                 Select sterilization status
               </option>
-              <option value="true">Yes</option>
-              <option value="false">No</option>
+              <option value="true">{t("general.yes")}</option>
+              <option value="false">{t("general.no")}</option>
             </select>
             {errors.sterilized && (
-              <span className="error">Please enter sterilization status</span>
+              <span className="error">
+                {t("cats.cat.form.errors.sterilization")}
+              </span>
             )}
           </div>
         </div>
@@ -220,30 +227,31 @@ const AddEditCat = ({
         {(watchedValue.sterilized === "true" ||
           watchedValue.dateOfsterilization) && (
           <div className="flex cat-info-box">
-            <div className="box-item box-key">Sterilization date:</div>
+            <div className="box-item box-key">
+              {t("cats.cat.form.dateOfsterilization")}
+            </div>
             <div className="box-item box-value">
               <input
                 type="date"
                 className={errors.dateOfsterilization ? "form-error" : ""}
-                placeholder="date of sterilization"
                 {...register("dateOfsterilization", {
                   required: watchedValue.sterilized === "true",
-                  min: formatDate(
-                    new Date(watchedValue.birthdate),
-                    undefined,
-                    3
-                  ),
+                  min: watchedValue.birthdate
+                    ? formatDate(new Date(watchedValue.birthdate), undefined, 3)
+                    : 0,
                   max: new Date().toISOString().split("T")[0],
                 })}
               />
               {errors.dateOfsterilization && (
-                <span className="error">Please a valid sterilization date</span>
+                <span className="error">
+                  {t("cats.cat.form.errors.sterilizationDate")}
+                </span>
               )}
             </div>
           </div>
         )}
         <div className="flex cat-info-box">
-          <div className="box-item box-key">Vaccinated:</div>
+          <div className="box-item box-key">{t("cats.props.vaccinated")}:</div>
           <div className="box-item box-value">
             <select
               {...register("vaccinated", {
@@ -253,43 +261,46 @@ const AddEditCat = ({
               defaultValue={""}
             >
               <option className="disabled" value="" disabled>
-                Select vaccination status
+                {t("cats.cat.form.vaccination")}
               </option>
-              <option value="true">Yes</option>
-              <option value="false">No</option>
+              <option value="true">{t("general.yes")}</option>
+              <option value="false">{t("general.no")}</option>
             </select>
             {errors.vaccinated && (
-              <span className="error">Please a valid vaccination status</span>
+              <span className="error">
+                {t("cats.cat.form.errors.vaccination")}
+              </span>
             )}
           </div>
         </div>
 
         {(watchedValue.vaccinated === "true" || watchedValue.dateOfVaccine) && (
           <div className="flex cat-info-box">
-            <div className="box-item box-key">Last vaccination date:</div>
+            <div className="box-item box-key">
+              {t("cats.cat.form.dateOfVaccination")}:
+            </div>
             <div className="box-item box-value">
               <input
                 type="date"
                 className={errors.dateOfVaccine ? "form-error" : ""}
-                placeholder="date of vaccination"
                 {...register("dateOfVaccine", {
                   required: watchedValue.vaccinated === "true",
-                  min: formatDate(
-                    new Date(watchedValue.birthdate),
-                    undefined,
-                    1
-                  ),
+                  min: watchedValue.birthdate
+                    ? formatDate(new Date(watchedValue.birthdate), undefined, 1)
+                    : 0,
                   max: new Date().toISOString().split("T")[0],
                 })}
               />
               {errors.dateOfVaccine && (
-                <span className="error">Please a valid vaccination date</span>
+                <span className="error">
+                  {t("cats.cat.form.errors.vaccinationDate")}
+                </span>
               )}
             </div>
           </div>
         )}
         <div className="flex cat-info-box">
-          <div className="box-item box-key">Dewormed:</div>
+          <div className="box-item box-key">{t("cats.props.dewormed")}:</div>
           <div className="box-item box-value">
             <select
               {...register("dewormed", {
@@ -299,20 +310,25 @@ const AddEditCat = ({
               defaultValue={""}
             >
               <option className="disabled" value="" disabled>
-                Select deworming status
+                {t("cats.cat.form.deworming")}
               </option>
-              <option value="true">Yes</option>
-              <option value="false">No</option>
+              <option value="true">{t("general.yes")}</option>
+              <option value="false">{t("general.no")}</option>
             </select>
             {errors.dewormed && (
-              <span className="error">Please deworming status</span>
+              <span className="error">
+                {t("cats.cat.form.errors.deworming")}
+              </span>
             )}
           </div>
         </div>
 
         {(watchedValue.dewormed === "true" || watchedValue.dateOfDeworm) && (
           <div className="flex cat-info-box">
-            <div className="box-item box-key">Last deworming date:</div>
+            <div className="box-item box-key">
+              {" "}
+              {t("cats.cat.form.dateOfDeworming")}
+            </div>
             <div className="box-item box-value">
               <input
                 type="date"
@@ -320,20 +336,26 @@ const AddEditCat = ({
                 placeholder="date of deworming"
                 {...register("dateOfDeworm", {
                   required: watchedValue.dewormed === "true",
-                  min: formatDate(new Date(watchedValue.birthdate)),
+                  min: watchedValue.birthdate
+                    ? formatDate(new Date(watchedValue.birthdate))
+                    : 0,
                   max: new Date().toISOString().split("T")[0],
                 })}
               />
               {errors.dateOfDeworm && (
                 <span className="error">
-                  Please enter ֿa valid deworming date
+                  {t("cats.cat.form.errors.dewormingDate")}
                 </span>
               )}
             </div>
           </div>
         )}
 
-        <input type="submit" className="general-button" />
+        <input
+          type="submit"
+          className="general-button"
+          value={t("general.submit")}
+        />
       </form>
     </div>
   );

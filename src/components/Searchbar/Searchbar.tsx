@@ -2,9 +2,11 @@ import React from "react";
 import { FaSearch } from "react-icons/fa";
 import { CatContext } from "../../context/CatContext";
 import "./Searchbar.css";
+import { useTranslation } from "react-i18next";
+
 const Searchbar = () => {
   const { setSearch } = React.useContext(CatContext);
-
+  const { t } = useTranslation();
   const handleOnChange = (event: React.FormEvent<HTMLInputElement>) => {
     if (event.currentTarget.value.length > 1) {
       setSearch(event.currentTarget.value);
@@ -17,7 +19,7 @@ const Searchbar = () => {
       <FaSearch size={20} />
       <input
         type="text"
-        placeholder="Search by cat name or owner name"
+        placeholder={t("cats.search")}
         onChange={handleOnChange}
       ></input>
     </div>

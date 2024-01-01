@@ -1,7 +1,7 @@
 import React from "react";
 import { IAuthCred, IAuthForm } from "../../../interfaces/general";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
-
+import { useTranslation } from "react-i18next";
 const AuthForm = ({
   type,
   handleSubmit,
@@ -9,6 +9,7 @@ const AuthForm = ({
   authenticating,
   setAuthenticating,
 }: IAuthForm) => {
+  const { t } = useTranslation();
   const [showPassword, setShowPassword] = React.useState<boolean>(false);
   const [credentials, setCredentials] = React.useState<IAuthCred>({
     email: "",
@@ -28,7 +29,7 @@ const AuthForm = ({
     >
       <div className="form-element">
         <div className="label">
-          <label htmlFor="userName">User Name</label>
+          <label htmlFor="userName">{t("auth.userName")}</label>
         </div>
         <div>
           <input
@@ -47,7 +48,7 @@ const AuthForm = ({
       {(type === "login" || type === "signup") && (
         <div className="form-element">
           <div className="label">
-            <label htmlFor="password">Password</label>
+            <label htmlFor="password">{t("auth.password")}</label>
           </div>
           <div className="relative">
             <input
@@ -72,7 +73,7 @@ const AuthForm = ({
           </div>
         </div>
       )}
-      <div className="error">{error}</div>
+      <div className="error">{t(error)}</div>
       <div className="button-wrapper">
         <button
           className="general-button"
@@ -83,10 +84,10 @@ const AuthForm = ({
           }
         >
           {type === "login"
-            ? "Log in"
+            ? t("auth.loginButton")
             : type === "signup"
-            ? "Sign up"
-            : "Reset Password"}
+            ? t("auth.signUp")
+            : t("auth.reset")}
         </button>
       </div>
     </form>

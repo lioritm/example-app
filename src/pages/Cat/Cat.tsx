@@ -6,12 +6,13 @@ import Loader from "../../shared/components/Loader/Loader";
 import CatComp from "../../pagesComponents/Cat/CatComp";
 import AddEditCat from "../../pagesComponents/AddEditCat/AddEditCat";
 import { FaArrowLeft } from "react-icons/fa";
+import { useTranslation } from "react-i18next";
 
 const Cat = () => {
   const { catId } = useParams();
   const location = useLocation();
-
   const { returnCat } = React.useContext(CatContext);
+  const { t } = useTranslation();
   const [selectedCat, setSelectedCat] = React.useState<ICat>(
     returnCat(catId!)!.selectedCat
   );
@@ -28,9 +29,9 @@ const Cat = () => {
     <section className="container page">
       <Link to="/" className="back">
         <FaArrowLeft />
-        <span>Back</span>
+        <span>{t("general.back")}</span>
       </Link>
-      <h1>Cat Management Board</h1>
+      <h1>{t("cats.cat.pageTitle")}</h1>
       {!selectedCat ? (
         <div className="spinner-container">
           <Loader />

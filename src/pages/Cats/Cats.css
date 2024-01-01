@@ -6,4 +6,26 @@ h1 {
   h1 {
     font-size: 2rem;
   }
+  .delete-warning {
+    display: block;
+    font-size: 0.75rem;
+    font-weight: lighter;
+  }
+}
+@media screen and (max-width: 950px) {
+  h1 {
+    font-size: 2rem;
+  }
+  .actions {
+    width: 100%;
+    flex: none;
+  }
+  .actions button {
+    text-align: left;
+  }
+  .delete-warning {
+    display: block;
+    font-size: 0.75rem;
+    font-weight: lighter;
+  }
 }

@@ -1,5 +1,6 @@
 import { Timestamp } from "firebase/firestore";
 export interface ICat {
+  creator: string;
   id: string;
   ownerName: string;
   name: string;

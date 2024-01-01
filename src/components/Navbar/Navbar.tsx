@@ -1,10 +1,12 @@
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { UserAuth } from "../../context/AuthContext";
+import { useTranslation } from "react-i18next";
 import "./Navbar.css";
 export const Navbar = () => {
   const location = useLocation();
   const { logout } = UserAuth();
   const navigate = useNavigate();
+  const { t } = useTranslation();
   const handleLogout = async () => {
     try {
       await logout();
@@ -29,14 +31,14 @@ export const Navbar = () => {
             to="/cats"
             className={`${location.pathname === "/cats" ? "selected" : ""}`}
           >
-            Home
+            {t("nav.home")}
           </Link>
 
           <Link
             to="/addcat"
             className={`${location.pathname === "/addcat" ? "selected" : ""}`}
           >
-            Add new cat
+            {t("nav.addNew")}
           </Link>
         </div>
         <div className="right-nav">
@@ -44,7 +46,7 @@ export const Navbar = () => {
             className="w-full text-center mb-5 sidebar-icons"
             onClick={handleLogout}
           >
-            Logout
+            {t("nav.logout")}
           </button>
         </div>
       </div>

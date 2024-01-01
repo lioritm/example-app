@@ -15,6 +15,7 @@ import {
 } from "firebase/firestore";
 import { db, catsDB } from "../config/firebase";
 import { UserAuth } from "./AuthContext";
+import { v4 as uuidv4 } from "uuid";
 
 //import { CreateCatObj } from "../utils/createData";
 
@@ -36,11 +37,12 @@ const CatProvider = ({ children }: ContextProps) => {
     const data = await getDocs(catsCollectionRef);
     const tempCats = data.docs.map((doc) => ({
       ...doc.data(),
+      creator: doc.data().creator,
       name: doc.data().name,
       gender: doc.data().gender,
       birthdate: doc.data().birthdate,
       sterilized: doc.data().sterilized,
-      id: doc.id,
+      id: doc.id ? doc.id : uuidv4(),
       dewormed: doc.data().dewormed,
       vaccinated: doc.data().vaccinated,
       ownerName: doc.data().ownerName,
@@ -79,6 +81,7 @@ const CatProvider = ({ children }: ContextProps) => {
   };
 
   const addNewCat = async (newCat: ICat) => {
+    newCat.creator = user.email;
     const tempCats = [...cats];
     tempCats.push(newCat);
     setCats(tempCats);
@@ -92,7 +95,7 @@ const CatProvider = ({ children }: ContextProps) => {
       await deleteDoc(catDoc);
       setCats(tempCats);
     } catch (err) {
-      console.log(err);
+      alert(err);
     }
   };
   useEffect(() => {

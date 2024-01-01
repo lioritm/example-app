@@ -7,8 +7,12 @@ import "./CatList.css";
 import { FaRegEdit, FaTrash } from "react-icons/fa";
 import { DeleteModal } from "../../components/DeleteModal/DeleteModal";
 import { FaSortDown, FaSortUp, FaSort } from "react-icons/fa";
+import { UserAuth } from "../../context/AuthContext";
+import { useTranslation } from "react-i18next";
 
 const CatList = ({ cats, setCats }: catList) => {
+  const { user } = UserAuth();
+  const { t } = useTranslation();
   const [selectedCat, setSelectedCat] = React.useState<string | null>(null);
   const [openModal, setOpenModal] = React.useState<boolean>(false);
   const [sorting, setSorting] = React.useState<{
@@ -49,7 +53,7 @@ const CatList = ({ cats, setCats }: catList) => {
                 role="button"
                 onClick={() => applySorting("name")}
               >
-                Cat Name
+                {t("cats.props.name")}
                 {sorting.key !== "name" ? (
                   <FaSort />
                 ) : sorting.ascending ? (
@@ -63,7 +67,7 @@ const CatList = ({ cats, setCats }: catList) => {
                 role="button"
                 onClick={() => applySorting("ownerName")}
               >
-                Owner Name
+                {t("cats.props.ownerName")}
                 {sorting.key !== "ownerName" ? (
                   <FaSort />
                 ) : sorting.ascending ? (
@@ -77,7 +81,7 @@ const CatList = ({ cats, setCats }: catList) => {
                 role="button"
                 onClick={() => applySorting("gender")}
               >
-                Gender
+                {t("cats.props.gender")}
                 {sorting.key !== "gender" ? (
                   <FaSort />
                 ) : sorting.ascending ? (
@@ -91,7 +95,7 @@ const CatList = ({ cats, setCats }: catList) => {
                 role="button"
                 onClick={() => applySorting("birthdate")}
               >
-                Birthdate
+                {t("cats.props.birthdate")}
                 {sorting.key !== "birthdate" ? (
                   <FaSort />
                 ) : sorting.ascending ? (
@@ -105,7 +109,7 @@ const CatList = ({ cats, setCats }: catList) => {
                 role="button"
                 onClick={() => applySorting("sterilized")}
               >
-                Sterilized
+                {t("cats.props.sterilized")}
                 {sorting.key !== "sterilized" ? (
                   <FaSort />
                 ) : sorting.ascending ? (
@@ -119,7 +123,7 @@ const CatList = ({ cats, setCats }: catList) => {
                 role="button"
                 onClick={() => applySorting("vaccinated")}
               >
-                Vaccinated
+                {t("cats.props.vaccinated")}
                 {sorting.key !== "vaccinated" ? (
                   <FaSort />
                 ) : sorting.ascending ? (
@@ -133,7 +137,7 @@ const CatList = ({ cats, setCats }: catList) => {
                 role="button"
                 onClick={() => applySorting("dewormed")}
               >
-                Dewormed
+                {t("cats.props.dewormed")}
                 {sorting.key !== "dewormed" ? (
                   <FaSort />
                 ) : sorting.ascending ? (
@@ -144,8 +148,8 @@ const CatList = ({ cats, setCats }: catList) => {
               </span>
             </span>
             <span className="actions">
-              <span className="table-cell">Edit</span>
-              <span className="table-cell">Delete</span>
+              <span className="table-cell"> {t("cats.actions.edit")}</span>
+              <span className="table-cell"> {t("cats.actions.delete")}</span>
             </span>
           </div>
         </div>
@@ -155,46 +159,73 @@ const CatList = ({ cats, setCats }: catList) => {
               <div key={cat.id} className="table-row">
                 <Link className="table-row-devided" to={`/cats/${cat.id}`}>
                   <span className="table-cell">
-                    <span className="for-mobile">Cat name: </span>
+                    <span className="for-mobile">{t("cats.props.name")}: </span>
                     {cat.name}
                   </span>
                   <span className="table-cell">
-                    <span className="for-mobile">Owner name: </span>
+                    <span className="for-mobile">
+                      {t("cats.props.ownerName")}
+                    </span>
                     {cat.ownerName}
                   </span>
                   <span className="table-cell">
-                    <span className="for-mobile">Gender: </span>
+                    <span className="for-mobile">
+                      {t("cats.props.gender")}:
+                    </span>
                     {cat.gender}
                   </span>
                   <span className="table-cell">
-                    <span className="for-mobile">Birthdate: </span>
+                    <span className="for-mobile">
+                      {t("cats.props.birthdate")}:
+                    </span>
                     {cat.birthdate ? returnDate(cat.birthdate.seconds) : ""}
                   </span>
                   <span className="table-cell">
-                    <span className="for-mobile">Sterilized: </span>
-                    {cat.sterilized ? "Yes" : "No"}
+                    <span className="for-mobile">
+                      {t("cats.props.sterilized")}:
+                    </span>
+                    {cat.sterilized ? t("general.yes") : t("general.no")}
                   </span>
                   <span className="table-cell">
-                    <span className="for-mobile">Vaccinated: </span>
+                    <span className="for-mobile">
+                      {t("cats.props.vaccinated")}:
+                    </span>
 
-                    {cat.vaccinated ? "Yes" : "No"}
+                    {cat.vaccinated ? t("general.yes") : t("general.no")}
                   </span>
                   <span className="table-cell">
-                    <span className="for-mobile">Dewormed: </span>
-                    {cat.dewormed ? "Yes" : "No"}
+                    <span className="for-mobile">
+                      {t("cats.props.dewormed")}:
+                    </span>
+                    {cat.dewormed ? t("general.yes") : t("general.no")}
                   </span>
                 </Link>
                 <span className="actions">
                   <Link className="table-cell" to={`/cats/${cat.id}?edit`}>
                     <FaRegEdit />
-                    <span className="for-mobile">Edit </span>
+                    <span className="for-mobile">{t("cats.actions.edit")}</span>
                   </Link>
                   <button
+                    title={
+                      user.email !== cat.creator
+                        ? t("cats.actions.deleteWarning")
+                        : t("cats.actions.delete")
+                    }
+                    disabled={user.email !== cat.creator}
                     className="table-cell"
                     onClick={() => handleDelete(cat.id!)}
                   >
-                    <FaTrash />
-                    <span className="for-mobile">Delete </span>
+                    <FaTrash
+                      className={user.email !== cat.creator ? "disabled" : ""}
+                    />
+                    <span className="for-mobile">
+                      {t("cats.actions.delete")}
+                      {user.email !== cat.creator && (
+                        <span className="delete-warning">
+                          {t("cats.actions.deleteWarning")}
+                        </span>
+                      )}
+                    </span>
                   </button>
                 </span>
               </div>
