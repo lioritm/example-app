@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { FaArrowLeft } from "react-icons/fa";
-import { IAuthContainer } from "../../../interfaces/general";
+import { IAuthContainer } from "../../../interfaces/auth";
 const AuthContainer = ({ type, children }: IAuthContainer) => {
   const { t } = useTranslation();
   return (

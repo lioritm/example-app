@@ -1,5 +1,5 @@
 import React from "react";
-import { IAuthCred, IAuthForm } from "../../../interfaces/general";
+import { IAuthCred, IAuthForm } from "../../../interfaces/auth";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { useTranslation } from "react-i18next";
 const AuthForm = ({
