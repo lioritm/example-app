@@ -40,6 +40,12 @@ export const Navbar = () => {
           >
             {t("nav.addNew")}
           </Link>
+          <Link
+            to="/charts"
+            className={`${location.pathname === "/charts" ? "selected" : ""}`}
+          >
+            {t("nav.charts")}
+          </Link>
         </div>
         <div className="right-nav">
           <button

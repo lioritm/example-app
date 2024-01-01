@@ -18,6 +18,7 @@ const AuthForm = ({
   const toggleView = () => {
     setShowPassword((prevValue) => !prevValue);
   };
+  const buttonText = `auth.${type}`;
 
   return (
     <form
@@ -83,11 +84,7 @@ const AuthForm = ({
               : false
           }
         >
-          {type === "login"
-            ? t("auth.loginButton")
-            : type === "signup"
-            ? t("auth.signUp")
-            : t("auth.reset")}
+          {t(buttonText)}
         </button>
       </div>
     </form>

@@ -6,7 +6,8 @@
   "nav": {
     "home": "Home",
     "addNew": "Add new cat",
-    "logout": "Log out"
+    "logout": "Log out",
+    "charts": "Charts"
   },
   "cats": {
     "props": {
@@ -64,14 +65,13 @@
   },
   "auth": {
     "title": "Welcome to my cat management app",
-    "login": "Login",
-    "loginButton": "Log in",
+    "login": "Log in",
     "forgotLink": "Forgot password",
     "newUserLink": "New user",
     "userName": "User Name",
     "password": "Password",
-    "signUp": "Sign up",
-    "reset": "Reset Password",
+    "signup": "Sign up",
+    "forgot": "Reset Password",
     "backToLogin": "Back to login"
   },
   "errors": {
