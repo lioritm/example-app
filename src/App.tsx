@@ -9,6 +9,7 @@ import Cat from "./pages/Cat/Cat";
 import Cats from "./pages/Cats/Cats";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import ChartPage from "./pages/ChartPage/ChartPage";
+import ProtectedRoute from "./components/ProtectedRoute";
 function App() {
   return (
     <AuthContextProvider>
@@ -19,10 +20,38 @@ function App() {
             <Route path="/" element={<Login />} />
             <Route path="/reset-password" element={<Forgot />} />
             <Route path="/create-new-user" element={<CreateNewUser />} />
-            <Route path="/cats" element={<Cats />}></Route>
-            <Route path="/cats/:catId" element={<Cat />} />
-            <Route path="/addcat" element={<AddCatPage />} />
-            <Route path="/charts" element={<ChartPage />} />
+            <Route
+              path="/cats"
+              element={
+                <ProtectedRoute>
+                  <Cats />
+                </ProtectedRoute>
+              }
+            ></Route>
+            <Route
+              path="/cats/:catId"
+              element={
+                <ProtectedRoute>
+                  <Cat />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/addcat"
+              element={
+                <ProtectedRoute>
+                  <AddCatPage />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/charts"
+              element={
+                <ProtectedRoute>
+                  <ChartPage />
+                </ProtectedRoute>
+              }
+            />
           </Routes>
         </BrowserRouter>
       </CatProvider>
